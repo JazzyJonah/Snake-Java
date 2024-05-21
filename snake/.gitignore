@@ -1,0 +1,11 @@
+# Ignore .vscode folder
+.vscode/
+
+# Ignore .log files
+*.log
+
+# Ignore .class files
+*.class
+
+# Ignore .lst files
+*.lst
