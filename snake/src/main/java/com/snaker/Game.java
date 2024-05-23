@@ -47,16 +47,16 @@ public class Game {
             }
 
             if (key == GLFW_KEY_UP && action == GLFW_PRESS){
-                gameState.setDirection(0);
+                gameState.addToQueue(0);
             }
             else if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS){
-                gameState.setDirection(1);
+                gameState.addToQueue(1);
             }
             else if (key == GLFW_KEY_DOWN && action == GLFW_PRESS){
-                gameState.setDirection(2);
+                gameState.addToQueue(2);
             }
             else if (key == GLFW_KEY_LEFT && action == GLFW_PRESS){
-                gameState.setDirection(3);
+                gameState.addToQueue(3);
             }
         });
 

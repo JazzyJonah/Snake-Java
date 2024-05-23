@@ -1,12 +1,15 @@
 package com.snaker;
 
+
+import java.util.*;
+
 public class GameState{
     private ListNode coords;
     private int score;
     private int direction; // 0 = up, 1 = right, 2 = down, 3 = left
     private int[] apple;
     private boolean over;
-    private boolean canChangeDirections = true;
+    private Queue<Integer> directionQueue;
 
 
     public final int windowSize = 800;
@@ -21,6 +24,7 @@ public class GameState{
         score = 1;
         direction = 1;
         over = false;
+        directionQueue = new LinkedList<Integer>();
 
     }
 
@@ -40,12 +44,17 @@ public class GameState{
         return over;
     }
 
-    public void setDirection(int newDirection){
+    public void addToQueue(int newDirection){
+        directionQueue.add(newDirection);
+    }
+
+    public boolean setDirection(int newDirection){
         // Make sure the direction isn't opposite the old direction
-        if (canChangeDirections && direction-newDirection != 2 && direction-newDirection != -2){
+        if (direction-newDirection != 2 && direction-newDirection != -2 && direction != newDirection){
             direction = newDirection;
-            canChangeDirections = false;
+            return true;
         }
+        return false;
     }
     public void createApple(){
         // Create a new apple at a random location
@@ -65,6 +74,13 @@ public class GameState{
     }
 
     public void update(){
+        // Do the next input in the input queue
+        boolean input = false;
+        while(!input && !directionQueue.isEmpty()){
+            input = setDirection(directionQueue.poll());
+        }
+        
+
         // Update the snake's position
         int[] newHead = new int[2];
         int[] oldHead = coords.getValue();
@@ -124,7 +140,6 @@ public class GameState{
             current = current.getNext();
         }
 
-        canChangeDirections = true;
     }
 }
   
