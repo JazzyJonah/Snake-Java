@@ -57,6 +57,11 @@ public class GameState{
         return false;
     }
     public void createApple(){
+        // Can't create an apple if the snake occupies the entire grid
+        if (score == gridSize*gridSize){
+            return;
+        }
+
         // Create a new apple at a random location
         int[] newApple = {(int)(Math.random()*gridSize), (int)(Math.random()*gridSize)};
         ListNode current = coords;
