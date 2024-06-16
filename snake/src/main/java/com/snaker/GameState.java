@@ -17,6 +17,7 @@ public class GameState{
     public final int gridSize = windowSize/pixelSize;
 
     public GameState(){
+        // Represents the state of the game
         int[] initCoord = {0, 0};
         coords = new ListNode(initCoord, null);
         createApple();
@@ -29,26 +30,33 @@ public class GameState{
     }
 
     public ListNode coords(){
+        // Returns the coordinates of the snake
         return coords;
     }
     public int[] apple(){
+        // Returns the coordinates of the apple
         return apple;
     }
     public int score(){
+        // Returns the score
         return score;
     }
     public int direction(){
+        // Returns the direction of the snake
         return direction;
     }
     public boolean over(){
+        // Returns whether the game is over
         return over;
     }
 
     public void addToQueue(int newDirection){
+        // Add a new direction to the queue
         directionQueue.add(newDirection);
     }
 
     public boolean setDirection(int newDirection){
+        // Change the direction of the snake
         // Make sure the direction isn't opposite the old direction
         if (direction-newDirection != 2 && direction-newDirection != -2 && direction != newDirection){
             direction = newDirection;
@@ -57,12 +65,13 @@ public class GameState{
         return false;
     }
     public void createApple(){
+        // Create a new apple at a random location
+
         // Can't create an apple if the snake occupies the entire grid
         if (score == gridSize*gridSize){
             return;
         }
 
-        // Create a new apple at a random location
         int[] newApple = {(int)(Math.random()*gridSize), (int)(Math.random()*gridSize)};
         ListNode current = coords;
         while (current != null){

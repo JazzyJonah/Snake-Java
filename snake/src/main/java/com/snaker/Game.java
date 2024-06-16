@@ -15,6 +15,7 @@ public class Game {
     private final int frameRate = 30;
 
     public Game(){
+        // Create a new game
         gameState = new GameState();
         windowSize = gameState.windowSize;
         // initiate glfw and loop it
@@ -23,12 +24,14 @@ public class Game {
     }
 
     public GameState gameState(){
+        // Return the game state
         return gameState;
     }
 
     public void init(){
         // This code was partially written in https://www.lwjgl.org/, 
         // but I've adapted it to the needs of this project.
+        // This initiates the game window and allows the game to be played
         GLFWErrorCallback.createPrint(System.err).set();
         if (!glfwInit()) {
             throw new IllegalStateException("Unable to initialize GLFW");
@@ -72,6 +75,7 @@ public class Game {
         // This code was partially written in https://www.lwjgl.org/, 
         // but I've adapted it to the needs of this project.
             // Specifically, I added the sleep loop and the clearWindow(), drawPixel(), and drawGameState() methods
+        // This is the loop in which input is repeatedly taken and the game state is updated
         GL.createCapabilities(); // This line is necessary for LWJGL to work properly
                                 // Not exactly sure why
         while(!glfwWindowShouldClose(window)){

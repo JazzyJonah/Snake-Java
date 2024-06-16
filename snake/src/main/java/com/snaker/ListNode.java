@@ -6,6 +6,7 @@ public class ListNode{
     private ListNode next;
     
     public ListNode(int[] initValue, ListNode initNext){
+      // Constructor
       value = initValue; next = initNext;
     }
     
