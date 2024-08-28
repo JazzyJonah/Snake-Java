@@ -108,7 +108,7 @@ public class Game {
         ListNode current = gameState.coords();
         while (current != null){
             int[] coord = current.getValue();
-            drawPixel(coord[0]*gameState.pixelSize, coord[1]*gameState.pixelSize, 0, 1, 0);
+            drawPixel(coord[0]*gameState.pixelSize, coord[1]*gameState.pixelSize, Math.random(), Math.random(), Math.random());
             current = current.getNext();
         }
 
@@ -116,12 +116,12 @@ public class Game {
         int[] apple = gameState.apple();
         drawPixel(apple[0]*gameState.pixelSize, apple[1]*gameState.pixelSize, 1, 0, 0);
     }
-    public void drawPixel(int x, int y, int red, int green, int blue){
+    public void drawPixel(int x, int y, double red, double green, double blue){
         // This method will draw a pixel at the given x and y coordinates
         // The pixel will be a square of size gameState.pixelSize
         // System.out.println("Drawing pixel at " + x + ", " + y);
         
-        GL11.glColor3f(red, green, blue);
+        GL11.glColor3f((float)red, (float)green, (float)blue);
         glBegin(GL_QUADS);
 
         // NOTE: center is (0,0), top left is (-1, 1)
